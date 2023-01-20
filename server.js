@@ -1,6 +1,6 @@
 const { json } = require('body-parser');
 const express = require ('express')
-const { MongoClient } = require('mongodb');
+const { MongoClient,ObjectId } = require('mongodb');
 const app= express()
 const port=process.env.PORT||3001
 
@@ -27,12 +27,10 @@ app.post('/create', async(req,res)=>{
         res.json(result)
     }catch(err){
         res.status(500).json(err)
-
-
     }
-
-
 })
+
+
 ///////////read users---prob need read comments
 app.get('/read', async(req,res)=>{
     try{
@@ -41,19 +39,40 @@ app.get('/read', async(req,res)=>{
     }catch(err){
         res.status(500).json(err)
     }
-
-
 })
 
+///////////update users---prob need update comments
+app.put('/update/:id', async(req,res)=>{
+    try{
+        const result= await db.collection('users').updateOne(
+            {_id:ObjectId(req.params.id)},
+            {$set:req.body}
+        )
+        res.json(result)
+    }catch(err){
+        res.status(500).json(err)
+    }
+})
+
+//////////  ADD/DELETE COMMENTS AND FRIENDS
+
+///////////delete users---prob need delete comments
+app.delete('/delete/:id', async(req,res)=>{
+    try{
+        const result= await db.collection('users').deleteOne({
+            _id:ObjectId(req.params.id)
+        })
+        res.json(result)
+    }catch(err){
+        res.status(500).json(err)
+    }
+})
 
 const init =async()=>{
     await client.connect()
     db=client.db(dbName)
 
     
-    
-
-
     app.listen(port, ()=>{
         console.log(`noSQL homework app listening on port: ${port}`)
     })
