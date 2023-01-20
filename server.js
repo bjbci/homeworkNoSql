@@ -1,3 +1,4 @@
+const { json } = require('body-parser');
 const express = require ('express')
 const { MongoClient } = require('mongodb');
 const app= express()
@@ -19,12 +20,27 @@ app.use(express.json())
 //   you may also optionally use a JavaScript date library of your choice or the native JavaScript `Date` object to format timestamps.
 
 
-app.post('/create', (req,res)=>{
+///////////create users---prob need create comments
+app.post('/create', async(req,res)=>{
+    try{
+    const result=  await db.collection('users').insertOne(req.body)
+        res.json(result)
+    }catch(err){
+        res.status(500).json(err)
+
+
+    }
 
 
 })
-
-app.get('read', (req,res)=>{
+///////////read users---prob need read comments
+app.get('/read', async(req,res)=>{
+    try{
+        const users= await db.collection('users').find().toArray()
+        res.json(users)
+    }catch(err){
+        res.status(500).json(err)
+    }
 
 
 })
@@ -34,8 +50,8 @@ const init =async()=>{
     await client.connect()
     db=client.db(dbName)
 
-    const users= await db.collection('users').find().toArray()
-    console.log(users)
+    
+    
 
 
     app.listen(port, ()=>{
