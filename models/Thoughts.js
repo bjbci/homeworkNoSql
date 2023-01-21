@@ -1,12 +1,42 @@
-const {Schema,model}= require ('mongoose');
+const {Schema,model, default: mongoose}= require ('mongoose');
+
+
+const reactionSchema=new Schema({
+  reactionId:{ type:String, required:true},
+  //   * Default value is set to a new ObjectId
+  //   * Use Mongoose's ObjectId data type
+    username:{
+      type:String,
+      required:true,
+    },
+    reactionBody:{
+      type:String,
+      required:true,
+      //   * 280 character maximum
+    },
+    createdAt:{
+      date: { type: Date, default: Date.now },
+      //   * Use a getter method to format the timestamp on query
+    }
+})
+
+
+
+
+
+
 const ThoughtsSchema=new Schema({
 
-    thoughtText:  String, // String is shorthand for {type: String}
-    username: String,
-    // reactions: Array(reactionSchema),
-    // comments: [{ body: String, date: Date }],
-    // createdAt: { type: Date, default: Date.now },
-    
+    thoughtText:{
+      type: String,
+      required: "Text between 1 and 280 characters is required ",
+    },
+    username: {
+      type: String,
+      required: "a username is required",
+    },
+    reaction: [reactionSchema],
+  
     // meta: {
     //   reactionsCount: Number,
 //}

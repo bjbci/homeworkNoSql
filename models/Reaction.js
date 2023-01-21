@@ -2,10 +2,18 @@ const {Schema,model}= require ('mongoose');
 const { Timestamp } = require("mongodb");
 
 const ReactionSchema=new Schema({
-    reactionId:String,
-    username: String,
-    reactionBody:String,
-    
+    reactionId:{
+        type: String,
+        default:"new ObjectId",
+    },
+    username:{
+        type: String,
+        required: "A username is required",
+    },
+    reactionBody:{
+        type:String,
+        required: "maximum character count is 280"
+    },
     date: { type: Date, default: Date.now },
    
 })

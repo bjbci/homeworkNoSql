@@ -1,11 +1,57 @@
 const {Schema,model}= require ('mongoose');
+
+
+const friendSchema = new Schema({
+    // reactionId:{ type:String, required:true},
+    //   * Default value is set to a new ObjectId
+    //   * Use Mongoose's ObjectId data type
+      username:{
+        type:String,
+        required:true,
+      },
+      email:{
+        type:String,
+        required: true,
+        unique: true, 
+         validate: {
+              validator: function(v) {
+                return /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/.test(v);
+              },
+              message: props => `${props.value} is not a valid email address!`
+            },
+            required: [true, 'email is required']
+          },
+   
+  })
+
+
+
 const UserSchema=new Schema({
 
-    username:  String, 
-    email: String,
-    body:   String,
+    username:{ 
+    type:  String,
+    required: true,
+    unique: true, 
+    // { $trim: { input: <string>,  chars: <string> } }
+    },
+    email:{
+    type:String,
+    required: true,
+    unique: true, 
+     validate: {
+          validator: function(v) {
+            return /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/.test(v);
+          },
+          message: props => `${props.value} is not a valid email address!`
+        },
+        required: [true, 'email is required']
+      },
+    //  * Must match a valid email address (look into Mongoose's matching validation)
+    
+  
     // thoughts: [ 'Thoughts-Model'],
-    // friends: Array,
+    friends: [friendSchema],
+     
 })
 const User=model('User',UserSchema)
 
