@@ -2,7 +2,7 @@ const {Schema,model, default: mongoose}= require ('mongoose');
 
 
 const reactionSchema=new Schema({
-  reactionId:{ type:String, required:true},
+  // reactionId:{ type:String, required:true},
   //   * Default value is set to a new ObjectId
   //   * Use Mongoose's ObjectId data type
     username:{
