@@ -1,15 +1,15 @@
-const {Schema}= require ('mongoose');
+const {Schema,model}= require ('mongoose');
 const ThoughtsSchema=new Schema({
 
     thoughtText:  String, // String is shorthand for {type: String}
     username: String,
-    reactions: Array(reactionSchema),
-    comments: [{ body: String, date: Date }],
-    createdAt: { type: Date, default: Date.now },
+    // reactions: Array(reactionSchema),
+    // comments: [{ body: String, date: Date }],
+    // createdAt: { type: Date, default: Date.now },
     
-    meta: {
-      reactionsCount: Number,
-}
+    // meta: {
+    //   reactionsCount: Number,
+//}
 })
 
 const Thoughts=model('Thoughts',ThoughtsSchema)
