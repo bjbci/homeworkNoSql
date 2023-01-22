@@ -1,64 +1,29 @@
-const {Schema,model}= require ('mongoose');
+// const {Schema,model}= require ('mongoose');
+const mongoose=require('mongoose')
 const { Timestamp } = require("mongodb");
 
-const ReactionSchema=new Schema({
-    reactionId:{
-        type: String,
-        default:"new ObjectId",
-    },
-    username:{
-        type: String,
-        required: "A username is required",
-    },
-    reactionBody:{
-        type:String,
-        required: "maximum character count is 280"
-    },
-    date: { type: Date, default: Date.now },
-   
-})
 
-const Reaction=model('Reaction',ReactionSchema)
+
+const reactionSchema=new mongoose.Schema({
+    // reactionId:{ type:String, required:true},
+    //   * Default value is set to a new ObjectId
+    //   * Use Mongoose's ObjectId data type
+      username:{
+        type:String,
+        required:true,
+      },
+      reactionBody:{
+        type:String,
+        required:true,
+        //   * 280 character maximum
+      },
+      createdAt:{
+        date: { type: Date, default: Date.now },
+        //   * Use a getter method to format the timestamp on query
+      }
+  })
+ 
+  const Reaction=mongoose.model('Reaction',reactionSchema)
 
 module.exports=Reaction
-// **Reaction** (SCHEMA ONLY)
 
-
-
-
-
-
-
-
-
-// const Users=mongoose.model('Users',{reactionId:String,reactionBody:String,username:String, createdAt:Timestamp('use getter method to format timestamp on query')})
-
-
-// const blogSchema = new Schema({
-//     reactionId:String,
-//     username: String,
-//     reactionBody:String,
-    
-//     date: { type: Date, default: Date.now },
-   
-//   });
-
-// * `reactionId`
-//   * Use Mongoose's ObjectId data type
-//   * Default value is set to a new ObjectId
-
-// * `reactionBody`
-//   * String
-//   * Required
-//   * 280 character maximum
-
-// * `username`
-//   * String
-//   * Required
-
-// * `createdAt`
-//   * Date
-//   * Set default value to the current timestamp
-//   * Use a getter method to format the timestamp on query
-
-// Create a virtual called `reactionCount` that retrieves the length of the thought's `reactions` array field on query.
