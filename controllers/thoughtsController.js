@@ -1,4 +1,5 @@
-const {Thoughts}=require('../models')
+const {objectId}=require('mongoose').Types
+const {Thoughts,User}=require('../models')
 
 module.exports={
 

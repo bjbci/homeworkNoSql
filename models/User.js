@@ -1,3 +1,4 @@
+// const mongoose= require ('mongoose');
 const {Schema,model}= require ('mongoose');
 
 
@@ -8,27 +9,34 @@ const UserSchema=new Schema({
     type:  String,
     required: true,
     unique: true, 
-    // { $trim: { input: <string>,  chars: <string> } }
+    trim: true,
     },
     email:{
     type:String,
     required: true,
     unique: true, 
-     validate: {
-          validator: function(v) {
-            return /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/.test(v);
+    match:[ /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/,'email is required'],
           },
-          message: props => `${props.value} is not a valid email address!`
-        },
-        required: [true, 'email is required']
+    thoughts: [
+      {
+       type :Schema.Types.Objectid,
+       ref:'Thoughts',//referencing Thoughts model
       },
-    //  * Must match a valid email address (look into Mongoose's matching validation)
-    
-  
-    // thoughts: [_id],----referencing Thoughts model
-    // friends: [friendSchema],----ids referncing User model
-     
-  })
+      ],
+     friends: [
+      {
+      type:Schema.Types.objectId,
+     ref:'User',//referencing User model
+      },
+    ],
+  },
+  {
+    toJSON:{
+    virtuals:true,
+    getters:true,
+  },
+  id:false,
+ })
   // friendCount=friends.length
 
 const User=model('User',UserSchema)

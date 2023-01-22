@@ -1,11 +1,12 @@
 {
   "name": "homeworknosql",
   "version": "1.0.0",
-  "description": "",
+  "description": "NoSql homework",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
+    "seed":"node utils/seed",
     "dev": "npx nodemon server.js"
   },
   "repository": {

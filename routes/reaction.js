@@ -2,13 +2,13 @@ const router=require('express').Router()
 const reactionController=require('../controllers/reactionController')
 
 
-router.post('/create' ,reactionController.create)
+router.post('/' ,reactionController.create)
 
 
 router.get('/' ,reactionController.read)//.read was .find
 
 
-router.post('/update/:id' ,reactionController.update)
+router.put('/update/:id' ,reactionController.update)
 
 
 router.delete('/delete/:id' ,reactionController.delete)

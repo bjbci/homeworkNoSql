@@ -1,7 +1,8 @@
+const {objectId}=require('mongoose').Types
 const mongoose=require('mongoose')
 
 const friendSchema = new  mongoose.Schema({
-    // reactionId:{ type:String, required:true},
+    reactionId:{ type:String, required:true,default:objectId},
     //   * Default value is set to a new ObjectId
     //   * Use Mongoose's ObjectId data type
       username:{
@@ -22,6 +23,11 @@ const friendSchema = new  mongoose.Schema({
           },
    
   })
+
+
+  // Create a virtual called `friendCount` that retrieves the length of the user's `friends` array field on query.
+
+
   const Friend=mongoose.model('Friend',friendSchema)
 
   module.exports=Friend
