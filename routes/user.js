@@ -1,43 +1,21 @@
-// const router=require('express').Router()
-// const userController=require('../controllers/userController')
-
-
-// router.post('/',userController.create)
-
-
-// router.get('/',userController.find)
-
-
-// router.put('/update/:id',userController.update)
-
-
-// router.delete('/delete/:id',userController.delete)
-
-//  router.put('/create',userController.friendCount)
-
-//  router.get('/create',userController.displayFriendCount)
-
-
-// module.exports=router
-
 const router=require('express').Router()
-const userController=require('../controllers/userController')
+const userControllers=require('../controllers/userControllers')
 
 
-router.post('/',userController.create)
+router.post('/',userControllers.create)
 
 
-router.get('/',userController.find)
+router.get('/',userControllers.find)
 
 
-router.put('/update/:id',userController.update)
+router.put('/update/:id',userControllers.update)
 
 
-router.delete('/delete/:id',userController.delete)
+router.delete('/delete/:id',userControllers.delete)
 
- router.put('/create',userController.friendCount)
 
- router.get('/create',userController.displayFriendCount)
+router.get('/tally-user-friends/:id/',userControllers.friendCount)
+
 
 
 module.exports=router

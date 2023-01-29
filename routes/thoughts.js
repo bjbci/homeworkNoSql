@@ -1,22 +1,21 @@
 const router=require('express').Router()
-const thoughtsController=require('../controllers/thoughtsController')
+const thoughtsControllers=require('../controllers/thoughtsControllers')
 
 
-router.post('/', thoughtsController.create)
+router.post('/create',thoughtsControllers.create)
 
 
-router.get('/', thoughtsController.find)
+router.get('/',thoughtsControllers.find)
 
 
-router.put('/update/:id', thoughtsController.update)
+router.put('/update/:id',thoughtsControllers.update)
 
 
-router.delete('/delete/:id', thoughtsController.delete)
+router.delete('/delete/:id',thoughtsControllers.delete)
 
-// router.put('/create', thoughtsController.friendCount)
 
-// router.get('/create', thoughtsController.displayFriendCount)
 
+//  router.get('/tally-comment-reactions/:id/',thoughtsControllers.countReactions)
 
 module.exports=router
 

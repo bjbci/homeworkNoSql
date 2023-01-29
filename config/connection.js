@@ -1,18 +1,10 @@
 const mongoose = require('mongoose');
 
 
- mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/19noSql_db');
+mongoose.connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/19noSql_db');
 
 
- module.exports=mongoose.connection
-
-
-
-
-//  mongodb atlas connection:
-//  mongodb+srv://bajebi:(June9069)@cluster0.7dp5kj5.mongodb.net/19noSql_db?retryWrites=true&w=majority
-
-
+module.exports=mongoose.connection
 
 // API routes
 //USER USER USER ROUTESS

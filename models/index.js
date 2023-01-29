@@ -1,7 +1,7 @@
-const User=require('./User')
-const Reaction=require('./Reaction')
+const User=require('./user')//////I had --./user--
+const Reactions=require('./Reactions')
 const Thoughts=require('./Thoughts')
-const Friend=require('./Friend')
 
 
-module.exports={User, Reaction, Thoughts, Friend}
+
+module.exports={User, Reactions, Thoughts}
